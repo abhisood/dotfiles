@@ -15,7 +15,7 @@ linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
 for file in $linkables; do
     filename=".$( basename $file '.symlink' )"
     target="$HOME/$filename"
-    if [ ! -L $target ]; then
+    if [ -f $target ]; then
         echo "backing up $filename"
         cp $target $BACKUP_DIR
     else
@@ -25,7 +25,7 @@ done
 
 files=("$HOME/.config/nvim" "$HOME/.vim" "$HOME/.vimrc")
 for filename in "$HOME/.config/nvim" "$HOME/.vim" "$HOME/.vimrc"; do
-    if [ ! -L $filename ]; then
+    if [ -f $filename ]; then
         echo "backing up $filename"
         cp -rf $filename $BACKUP_DIR
     else
