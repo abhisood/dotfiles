@@ -22,12 +22,7 @@ setopt APPEND_HISTORY
 setopt COMPLETE_ALIASES
 
 # make terminal command navigation sane again
-bindkey '^[^[[D' backward-word
-bindkey '^[^[[C' forward-word
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^?' backward-delete-char
+bindkey "^U" backward-kill-line
 
 fpath=($ZSH/functions $fpath)
 autoload -U $ZSH/functions/*(:t)

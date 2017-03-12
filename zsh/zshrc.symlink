@@ -1,5 +1,6 @@
 export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh
+export DEFAULT_USER=`whoami`
 
 command_exists() {
     type "$1" > /dev/null 2>&1

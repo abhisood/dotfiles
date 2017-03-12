@@ -1,6 +1,7 @@
 source ~/.config/nvim/plugins.vim
 
 " Section General {{{
+"
 
 " Abbreviations
 abbr funciton function
@@ -12,7 +13,7 @@ set nocompatible            " not compatible with vi
 set autoread                " detect when a file is changed
 
 set history=1000            " change history to 1000
-set textwidth=120
+set textwidth=80
 
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -48,7 +49,10 @@ let g:onedark_terminal_italics=1
 
 syntax on
 " set t_Co=256                " Explicitly tell vim that the terminal supports 256 colors"
-colorscheme onedark         " Set the colorscheme
+colorscheme solarized8_dark_high        " Set the colorscheme
+" Set background transparent
+hi NonText ctermbg=none
+hi Normal guibg=NONE ctermbg=NONE
 
 " make the highlighting of tabs and other non-text less annoying
 highlight SpecialKey ctermbg=none ctermfg=8
@@ -81,11 +85,11 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 set backspace=indent,eol,start
 
 " Tab control
-set noexpandtab             " insert tabs rather than spaces for <Tab>
+set expandtab               " insert spaces instead of tabs
 set smarttab                " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-set tabstop=4               " the visible width of tabs
-set softtabstop=4           " edit as if the tabs are 4 characters wide
-set shiftwidth=4            " number of spaces to use for indent and unindent
+set tabstop=2               " the visible width of tabs
+set softtabstop=2           " edit as if the tabs are 4 characters wide
+set shiftwidth=2            " number of spaces to use for indent and unindent
 set shiftround              " round indent to a multiple of 'shiftwidth'
 set completeopt+=longest
 
@@ -106,14 +110,15 @@ set hidden                  " current buffer can be put into background
 set showcmd                 " show incomplete commands
 set noshowmode              " don't show which mode disabled for PowerLine
 set wildmode=list:longest   " complete files like a shell
-set scrolloff=3             " lines of text around cursor
+
+set scrolloff=5             " lines of text around cursor
 set shell=$SHELL
 set cmdheight=1             " command bar height
 set title                   " set terminal title
 
 " Searching
 set ignorecase              " case insensitive searching
-set smartcase               " case-sensitive if expresson contains a capital letter
+" set smartcase               " case-sensitive if expresson contains a capital letter
 set hlsearch                " highlight search results
 set incsearch               " set incremental search, like modern browsers
 set nolazyredraw            " don't redraw while executing macros
@@ -142,7 +147,7 @@ endif
 let mapleader = ','
 
 " remap esc
-inoremap jk <esc>
+inoremap ht <esc>
 
 " wipout buffer
 nmap <silent> <leader>b :bw<cr>
@@ -154,7 +159,7 @@ nmap <leader>, :w<cr>
 set pastetoggle=<leader>v
 
 " toggle paste mode
-" map <leader>v :set paste!<cr>
+map <leader>v :set paste!<cr>
 
 " edit ~/.config/nvim/init.vim
 map <leader>ev :e! ~/.config/nvim/init.vim<cr>
@@ -193,6 +198,9 @@ map <silent> <C-h> :call functions#WinMove('h')<cr>
 map <silent> <C-j> :call functions#WinMove('j')<cr>
 map <silent> <C-k> :call functions#WinMove('k')<cr>
 map <silent> <C-l> :call functions#WinMove('l')<cr>
+
+" fast quiting 
+nnoremap <silent> <C-q> :q<cr>
 
 map <leader>wc :wincmd q<cr>
 
@@ -260,13 +268,43 @@ augroup END
 """""""""""""""""""""""""""""""""""""
 
 " Toggle NERDTree
-nmap <silent> <leader>k :NERDTreeToggle<cr>
+nmap <silent> <leader>k :NERDTreeFocus<cr>
 " expand to the path of the file in the current buffer
 nmap <silent> <leader>y :NERDTreeFind<cr>
 
 let NERDTreeShowHidden=1
 let NERDTreeDirArrowExpandable = '▷'
 let NERDTreeDirArrowCollapsible = '▼'
+" Auto-open NERDTree on entering vim -
+" From a directory
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTreeToggle' argv()[0] | wincmd p | ene | endif
+" From a file
+autocmd vimenter * NERDTreeToggle
+" Without a dot
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
+
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+call NERDTreeHighlightFile('py', 'Magenta', 'none', '#ff00ff', '#151515')
+call NERDTreeHighlightFile('py', 'Magenta', 'none', '#ff00ff', '#151515')
 
 let g:fzf_layout = { 'down': '~25%' }
 
@@ -334,8 +372,8 @@ let g:neomake_typescript_tsc_maker = {
 
 " airline options
 let g:airline_powerline_fonts=1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+"let g:airline_left_sep=''
+"let g:airline_right_sep=''
 let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled = 1 " enable airline tabline
 let g:airline#extensions#tabline#tab_min_count = 2 " only show tabline if tabs are being used (more than 1 tab open)
@@ -348,5 +386,6 @@ let g:vim_json_syntax_conceal = 0
 let g:SuperTabCrMapping = 0
 
 " }}}
+
 
 " vim:foldmethod=marker:foldlevel=0

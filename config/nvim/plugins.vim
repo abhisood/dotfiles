@@ -18,9 +18,9 @@ call plug#begin('~/.config/nvim/plugged')
 
 " colorschemes
 " Plug 'dracula/vim'
-Plug 'joshdick/onedark.vim'
-
+Plug 'lifepillar/vim-solarized8'
 " utilities
+Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons' " file drawer
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim' " fuzzy file finder and so much more
 Plug 'mileszs/ack.vim' " search inside files using ack. Same as command line ack utility, but use :Ack
