@@ -11,6 +11,7 @@ abbr fitler filter
 
 set nocompatible            " not compatible with vi
 set autoread                " detect when a file is changed
+set encoding=utf-8
 
 set history=1000            " change history to 1000
 set textwidth=80
@@ -150,59 +151,73 @@ let mapleader = ','
 inoremap ht <esc>
 
 " wipout buffer
-nmap <silent> <leader>b :bw<cr>
+nnoremap <silent> <leader>b :bw<cr>
 
 " shortcut to save
-nmap <leader>, :w<cr>
+nnoremap <silent> <leader><leader> :update<cr>
 
 " set paste toggle
 set pastetoggle=<leader>v
 
 " toggle paste mode
-map <leader>v :set paste!<cr>
+noremap <leader>v :set paste!<cr>
 
 " edit ~/.config/nvim/init.vim
-map <leader>ev :e! ~/.config/nvim/init.vim<cr>
+noremap <leader>ev :e! ~/.config/nvim/init.vim<cr>
 " edit gitconfig
-map <leader>eg :e! ~/.gitconfig<cr>
+noremap <leader>eg :e! ~/.gitconfig<cr>
 
+" Quick open related file
+nnoremap <leader>oc :e %<.c<CR>
+nnoremap <leader>oC :e %<.cpp<CR>
+nnoremap <leader>oh :e %<.h<CR>
+nnoremap <leader>om :e %<.m<CR>
+nnoremap <leader>omm :e %<.mm<CR>
 " clear highlighted search
 noremap <space> :set hlsearch! hlsearch?<cr>
 
 " activate spell-checking alternatives
-nmap ;s :set invspell spelllang=en<cr>
+nnoremap ;s :set invspell spelllang=en<cr>
 
 " markdown to html
-nmap <leader>md :%!markdown --html4tags <cr>
+nnoremap <leader>md :%!markdown --html4tags <cr>
 
-" remove extra whitespace
-nmap <leader><space> :%s/\s\+$<cr>
-nmap <leader><space><space> :%s/\n\{2,}/\r\r/g<cr>
+" remove extra whitespacen
+nnoremap <leader><space> :%s/\s\+$<cr>
+nnoremap <leader><space><space> :%s/\n\{2,}/\r\r/g<cr>
 
 
-nmap <leader>l :set list!<cr>
+nnoremap <leader>l :set list!<cr>
 
 " Textmate style indentation
-vmap <leader>[ <gv
-vmap <leader>] >gv
-nmap <leader>[ <<
-nmap <leader>] >>
+vnoremap <leader>[ <gv
+vnoremap <leader>] >gv
+nnoremap <leader>[ <<
+nnoremap <leader>] >>
 
 " switch between current and last buffer
-nmap <leader>. <c-^>
+nnoremap <leader>. <c-^>
 
 " enable . command in visual mode
 vnoremap . :normal .<cr>
 
-map <silent> <C-h> :call functions#WinMove('h')<cr>
-map <silent> <C-j> :call functions#WinMove('j')<cr>
-map <silent> <C-k> :call functions#WinMove('k')<cr>
-map <silent> <C-l> :call functions#WinMove('l')<cr>
+noremap <silent> <C-h> :call functions#WinMove('h')<cr>
+noremap <silent> <C-j> :call functions#WinMove('j')<cr>
+noremap <silent> <C-k> :call functions#WinMove('k')<cr>
+noremap <silent> <C-l> :call functions#WinMove('l')<cr>
 
 " fast quiting 
-nnoremap <silent> <C-q> :q<cr>
+nnoremap <leader>q :q<cr>
+nnoremap <silent> <C-S-q> :qa<cr>
 
-map <leader>wc :wincmd q<cr>
+" Use CTRL-S for saving, also in Insert mode
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <C-O>:update<CR>
+
+" disable EX mode
+nnoremap Q <Nop>
+noremap <leader>wc :wincmd q<cr>
 
 " toggle cursor line
 nnoremap <leader>i :set cursorline!<cr>
@@ -222,15 +237,16 @@ nnoremap <leader>/ "fyiw :/<c-r>f<cr>
 
 " inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
-map <leader>r :call RunCustomCommand()<cr>
+noremap <leader>r :call RunCustomCommand()<cr>
 " map <leader>s :call SetCustomCommand()<cr>
 let g:silent_custom_command = 0
 
 " helpers for dealing with other people's code
-nmap \t :set ts=4 sts=4 sw=4 noet<cr>
-nmap \s :set ts=4 sts=4 sw=4 et<cr>
+nnoremap \t :set ts=4 sts=4 sw=4 noet<cr>
+nnoremap \s :set ts=4 sts=4 sw=4 et<cr>
 
 nnoremap <silent> <leader>u :call functions#HtmlUnEscape()<cr>
+
 
 " }}}
 
@@ -268,9 +284,9 @@ augroup END
 """""""""""""""""""""""""""""""""""""
 
 " Toggle NERDTree
-nmap <silent> <leader>k :NERDTreeFocus<cr>
+nnoremap <silent> <leader>k :NERDTreeFocus<cr>
 " expand to the path of the file in the current buffer
-nmap <silent> <leader>y :NERDTreeFind<cr>
+nnoremap <silent> <leader>y :NERDTreeFind<cr>
 
 let NERDTreeShowHidden=1
 let NERDTreeDirArrowExpandable = '▷'
@@ -281,6 +297,7 @@ let NERDTreeDirArrowCollapsible = '▼'
 " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTreeToggle' argv()[0] | wincmd p | ene | endif
 " From a file
 autocmd vimenter * NERDTreeToggle
+autocmd vimenter * wincmd l
 " Without a dot
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
 
@@ -310,23 +327,23 @@ let g:fzf_layout = { 'down': '~25%' }
 
 if isdirectory(".git")
     " if in a git project, use :GFiles
-    nmap <silent> <leader>t :GFiles<cr>
+    nnoremap <silent> <leader>t :GFiles<cr>
 else
     " otherwise, use :FZF
-    nmap <silent> <leader>t :FZF<cr>
+    nnoremap <silent> <leader>t :FZF<cr>
 endif
 
-nmap <silent> <leader>r :Buffers<cr>
-nmap <silent> <leader>e :FZF<cr>
-nmap <leader><tab> <plug>(fzf-maps-n)
+nnoremap <silent> <leader>r :Buffers<cr>
+nnoremap <silent> <leader>e :FZF<cr>
+nnoremap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+inoremap <c-x><c-k> <plug>(fzf-complete-word)
+inoremap <c-x><c-f> <plug>(fzf-complete-path)
+inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
+inoremap <c-x><c-l> <plug>(fzf-complete-line)
 
 nnoremap <silent> <Leader>C :call fzf#run({
 \   'source':
@@ -346,14 +363,14 @@ command! FZFMru call fzf#run({
 
 " Fugitive Shortcuts
 """""""""""""""""""""""""""""""""""""
-nmap <silent> <leader>gs :Gstatus<cr>
-nmap <leader>ge :Gedit<cr>
-nmap <silent><leader>gr :Gread<cr>
-nmap <silent><leader>gb :Gblame<cr>
+nnoremap <silent> <leader>gs :Gstatus<cr>
+nnoremap <leader>ge :Gedit<cr>
+nnoremap <silent><leader>gr :Gread<cr>
+nnoremap <silent><leader>gb :Gblame<cr>
 
-nmap <leader>m :MarkedOpen!<cr>
-nmap <leader>mq :MarkedQuit<cr>
-nmap <leader>* *<c-o>:%s///gn<cr>
+nnoremap <leader>m :MarkedOpen!<cr>
+nnoremap <leader>mq :MarkedQuit<cr>
+nnoremap <leader>* *<c-o>:%s///gn<cr>
 
 let g:neomake_javascript_jshint_maker = {
     \ 'args': ['--verbose'],
@@ -395,8 +412,8 @@ au BufNewFile,BufRead *.py
     \ set autoindent
     \ set fileformat=unix
 
-
 " }}}
 
 
 " vim:foldmethod=marker:foldlevel=0
+
