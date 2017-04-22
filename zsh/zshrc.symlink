@@ -27,8 +27,8 @@ fi
 
 
 # initialize autocomplete
-autoload -U compinit add-zsh-hook
-compinit
+fpath=($ZSH/completions $fpath) 
+autoload -U compinit && compinit
 
 for config ($ZSH/**/*completion.sh) source $config
 
