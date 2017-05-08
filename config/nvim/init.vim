@@ -148,7 +148,7 @@ endif
 let mapleader = ','
 
 " remap esc
-inoremap ht <esc>
+inoremap jk <esc>
 
 " wipout buffer
 nnoremap <silent> <leader>b :bw<cr>
@@ -208,7 +208,7 @@ noremap <silent> <C-l> :call functions#WinMove('l')<cr>
 
 " fast quiting 
 nnoremap <leader>q :q<cr>
-nnoremap <silent> <C-S-q> :qa<cr>
+nnoremap <silent> <C-S-q> :q<cr>
 
 " Use CTRL-S for saving, also in Insert mode
 noremap <C-S> :update<CR>
@@ -246,6 +246,10 @@ nnoremap \t :set ts=4 sts=4 sw=4 noet<cr>
 nnoremap \s :set ts=4 sts=4 sw=4 et<cr>
 
 nnoremap <silent> <leader>u :call functions#HtmlUnEscape()<cr>
+
+" Make d delete to blackhole register instead of overwriting the yank register
+vnoremap d "_d
+nnoremap d "_d
 
 
 " }}}
@@ -417,3 +421,25 @@ au BufNewFile,BufRead *.py
 
 " vim:foldmethod=marker:foldlevel=0
 
+
+" Use one of the following to define the camel characters.
+" Stop on capital letters.
+let g:camelchar = "A-Z"
+" Also stop on numbers.
+let g:camelchar = "A-Z0-9"
+" Include '.' for class member, ',' for separator, ';' end-statement,
+" and <[< bracket starts and "'` quotes.
+" TestTHISOutHow_it_Works_
+let g:camelchar = "A-Z0-9.,;:{([`'\""
+nnoremap <silent>B :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>
+nnoremap <silent>W :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>
+" inoremap <silent><C-Left> <C-o>:call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>
+" inoremap <silent><C-Right> <C-o>:call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>
+" vnoremap <silent><C-Left> :<C-U>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>v`>o
+" vnoremap <silent><C-Right> <Esc>`>:<C-U>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>v`<o
+
+
+" For my life/dev logging purposes
+
+"type nlog followed by space to start new log
+iab <expr> nlog strftime("---\n\n%H:%M:%S")

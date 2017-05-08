@@ -7,6 +7,7 @@ command_exists() {
 }
 
 
+eval "$(rbenv init -)"
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
 
@@ -26,9 +27,10 @@ if [[ -a ~/.localrc ]]; then
 fi
 
 
+
 # initialize autocomplete
 fpath=($ZSH/completions $fpath) 
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit
 
 for config ($ZSH/**/*completion.sh) source $config
 
@@ -72,7 +74,7 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
-zstyle :completion::complete:git-checkout:argument-rest:headrefs command "git for-each-ref --format='%(refname)' refs/heads 2>/dev/null"
 
-eval "$(hub alias -s)"
+
+export PATH="$HOME/.fastlane/bin:$PATH"
 

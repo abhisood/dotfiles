@@ -8,19 +8,22 @@ nnoremap gcc :xcmenucmd Comment Selection<CR>
 vnoremap gc  :xcmenucmd Comment Selection<CR>
 
 " Emulate CTRL-P
-noremap <C-p> :xccmd openQuickly<CR>
+noremap ,t :xccmd openQuickly<CR>
+
 
 " Case-insensitive searching.
 set ignorecase
 " But case-sensitive if expression contains a capital letter.
-set smartcase
+" set smartcase
+
+set backspace=indent,eol,start¬
 
 set hlsearch
-
-nnoremap <Space>4 /~<CR>
+set incsearch
 
 " Setup the number line
 set number
+set so=7
 
 " Use the system pasteboard
 set clipboard=unnamed
@@ -33,17 +36,21 @@ nnoremap H ^
 nnoremap L $
 
 " Window navigation
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " Tab noremappings
-nnoremap ,tt :xccmd newTab<CR>
-nnoremap ,tc :tabclose<CR>
+" nnoremap ,tt :xccmd newTab<CR>
+" nnoremap ,tc :tabclose<CR>
 
 " Make computers make sense
 nnoremap Y y$
+nnoremap d "_d
+vnoremap d "_d
+nnoremap X dd
+vnoremap X dd
 
 " I'd like the following command to save too
 " it doesn't seem like xvim supports this: \| update<CR>
@@ -58,7 +65,7 @@ nnoremap n nzz
 nnoremap N Nzz
 
 " Change the background color for searches
-highlight Search guibg=orange
+highlight Search guibg=#A55555
 
 " Better move controls
 nnoremap j gj
@@ -70,3 +77,208 @@ vnoremap j gj
 vnoremap k gk
 vnoremap gj j
 vnoremap gk k
+
+" set a map leader for more key combos
+let mapleader = ','
+
+" remap esc
+inoremap jk <esc>
+inoremap jj <esc>
+inoremap kk <esc>
+inoremap kj <esc>
+inoremap ;j ;<esc>
+
+" shortcut to save
+nnoremap  ,, mz | gg | vG | :xccmd indentSelection<CR> | `z | :w<CR>
+
+" set paste toggle
+" set pastetoggle=,v
+
+" toggle paste mode
+" noremap ,v :set paste!<cr>
+
+" edit ~/.config/nvim/init.vim
+noremap ,ev :e! ~/.config/nvim/init.vim<cr>
+" edit gitconfig
+noremap ,eg :e! ~/.gitconfig<cr>
+
+" Quick open related file
+nnoremap ,oc :e %<.c<CR>
+nnoremap ,oC :e %<.cpp<CR>
+nnoremap ,oh :e %<.h<CR>
+nnoremap ,om :e %<.m<CR>
+nnoremap ,omm :e %<.mm<CR>
+" clear highlighted search
+noremap <space> :nohls<CR>
+
+" activate spell-checking alternatives
+nnoremap ,;s :set invspell spelllang=en<cr>
+
+" markdown to html
+nnoremap ,md :%!markdown --html4tags <cr>
+
+nnoremap ,l :set list!<cr>
+
+" Textmate style indentation
+vnoremap ,[ <gv
+vnoremap ,] >gv
+nnoremap ,[ <<
+nnoremap ,] >>
+
+" switch between current and last buffer
+nnoremap ,. <c-^>
+
+" enable . command in visual mode
+vnoremap . :normal .<cr>
+
+noremap <silent> <C-h> :call functions#WinMove('h')<cr>
+" noremap <silent> <C-j> :call functions#WinMove('j')<cr>
+noremap <silent> <C-k> :call functions#WinMove('k')<cr>
+noremap <silent> <C-l> :call functions#WinMove('l')<cr>
+
+" fast quiting 
+nnoremap ,q :q<cr>
+nnoremap <silent> <C-S-q> :qa<cr>
+
+" Use CTRL-S for saving, also in Insert mode
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <C-O>:update<CR>
+
+" disable EX mode
+nnoremap Q <Nop>
+noremap ,wc :wincmd q<cr>
+
+" toggle cursor line
+nnoremap ,i :set cursorline!<cr>
+
+" scroll the viewport faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
+" moving up and down work as you would expect
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+nnoremap <silent> ^ g^
+nnoremap <silent> $ g$
+
+" search for word under the cursor
+nnoremap ,/ "fyiw :/<c-r>f<cr>
+
+" inoremap <tab> <c-r>=Smart_TabComplete()<CR>
+
+" Use one of the following to define the camel characters.
+" Stop on capital letters.
+let g:camelchar = "A-Z"
+" Also stop on numbers.
+let g:camelchar = "A-Z0-9"
+" Include '.' for class member, ',' for separator, ';' end-statement,
+" and <[< bracket starts and "'` quotes.
+let g:camelchar = "A-Z0-9.,;:{([`'\""
+nnoremap <silent><C-B> :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>
+nnoremap <silent><C-W> :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Navigate
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" dc-debug console
+map ,dc :xcmenucmd Activate Console<CR>
+map ,dv :xccmd toggleDebuggerVisibility<CR>
+
+" Move back and forward through the history
+map <C-k> :xccmd goForwardInHistoryByCommand<CR>
+map <C-j> :xccmd goBackInHistoryByCommand<CR>
+
+" switch between .h/.m
+" You can use vim cmd |gd| and |ctrl+i/o| to navigate between files.
+map ,n :xccmd jumpToNextCounterpart<CR>
+
+" Open in alternat editor
+map ,x :xccmd openInAdjacentEditorWithAlternate<CR>
+
+" reveal file or symbol
+map ,pr :xccmd revealInProjectNavigator<CR>
+"map ,sr :xccmd revealInSymbolNavigator<CR>
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Editor
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Show Completions
+    " map ,c :xccmd complete<CR>
+" Edit all in scope
+    map ,ea :xccmd toggleTokenizedEditing<CR>
+
+" Fold
+nnoremap <space><space>:xccmd fold<CR>
+nnoremap zz :xccmd unfold<CR>
+nnoremap <C-z> :xccmd unfoldAll<CR>
+map ,fa :xccmd foldAllMethods<CR>
+map ,ua :xccmd unfoldAllMethods<CR>
+map ,fc :xccmd foldAllComments<CR>
+map ,uc :xccmd unfoldAllComments<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"quick save and quit
+map ,w :w<CR>
+
+set ignorecase
+
+" search the string cursor points to. Very Usefull.
+map ,s viw:xccmd findSelectedTextInWorkspace<CR>
+map ,f viw:xccmd useSelectionForFind<CR>
+
+" search document for text cursor points to.
+map ,hh :xccmd searchDocumentationForSelectedText<CR>
+
+" Filter file (view menus achieve the goal too)
+map ,fn :xcmenucmd Filter in Navigator<CR>
+map ,fl :xcmenucmd Filter in Library<CR>
+
+" Close Window
+" map ,cw  :xccmd performClose<CR>
+" close current file
+map ,q  :xccmd closeDocument<CR>
+" show in Finder
+map ,in  :xccmd showInFinder<CR>
+" cmd+L, go to line
+map ,l  :xccmd openQuicklyScoped<CR>
+
+" insert a space
+nmap ,<space> i <ESC>i
+
+" insert a line
+nmap ,<Enter> o<Esc>
+" quick command mode
+" nmap ; :
+" quick replace word
+nmap ,y "zyiw
+nmap ,v viw"zp
+nmap ,c "zciw
+" nmap vp viwpyiw
+" nmap 0 ^
+
+" save when esc
+ino <Esc> <Esc>:xcmenucmd Save<CR>
+
+" nnoremap <CR> <c-m>
+" vnoremap <CR> s
+
+" quick add ; at end of statement
+inoremap <c-;> <ESC>A;<ESC>o
+inoremap ;; <ESC>mzA;<ESC>`z
+nnoremap ;; mzA;<ESC>`z
+
+" quick jump to end of line
+nnoremap .. <ESC>A
+
+" delete the next char
+nnoremap <c-x> lxh
+" Tab takes you to next Completions
+nnoremap <TAB> i<TAB>
+
+" Move by line in normal mode
+<c-e>  move up
+<c-y>  move down
+
+guicursor=n-v-c:block,o:hor50,i-ci:hor15,r-cr:hor30,sm:block,a:blinkwait10
+

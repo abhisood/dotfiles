@@ -1,34 +1,46 @@
 # gitconfig
 [user]
-    name = Nick Nisi
-    email = nick@nisi.org
+    name = Abhishek Sood
+    email = soabhish@twitch.tv
 [github]
-    user = nicknisi
+    user = soabhish
 [init]
     templatedir = ~/.dotfiles/git/templates
 [alias]
     # list all aliases
     la = "!git config -l | grep alias | cut -c 7-"
     delete-merged-branches = "!f() { git checkout --quiet master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout --quiet @{-1}; }; f"
-    diff = diff --ignore-space-at-eol -b -w --ignore-blank-lines
+    diff = diff #--ignore-space-at-eol -b -w --ignore-blank-lines
     cnv = commit --no-verify
     pnv = push --no-verify
     co = checkout
+    up = checkout
     cob = checkout -b
     st = status
     s = status --short
     ss  = status
     br = branch -v
+    rc = rebase --continue
+    d = diff 
+    dh = diff HEAD^
+    ds = diff --name-status 
+    dhs = ds HEAD^
 
     # rebase commands
     cont = rebase --continue
     conf = "!git s | grep ^U"
 
-    l = log --graph --pretty=format:'%Cred%h%Creset %C(bold blue)%an%C(reset) - %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    ll = log --graph --pretty=format:'%C(cyan)%h%Creset %C(bold blue)%an%C(reset) - %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    l = ll -7
+
+    lg = ll --name-status
+
 
     # show what I did today
     day = "!sh -c 'git log --reverse --no-merges --branches=* --date=local --after=\"yesterday 11:59PM\" --author=\"`git config --get user.name`\"'"
 
+
+    me = l --author=soabhish
     # order files by number of commits, ascending
     # Written by Corey Haines
     # Scriptified by Gary Bernhardt
@@ -54,7 +66,7 @@
     count = shortlog -sn
 
     undo = reset --soft HEAD~1
-    amend = commit -a --amend
+    amend = commit --amend --no-edit
 
     cleanup = "!git remote prune origin && git gc && git clean -df && git stash clear"
 
@@ -136,7 +148,7 @@
     whitespace = nowarn
 [core]
     excludesfile = ~/.gitignore_global
-    pager = less -FXRS -x2
+    pager = less -FXR -x2
     editor = nvim
     whitespace = cr-at-eol
 [rerere]
