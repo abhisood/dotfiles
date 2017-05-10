@@ -147,7 +147,7 @@ inoremap <C-S> <C-O>:update<CR>
 
 " disable EX mode
 nnoremap Q <Nop>
-noremap ,wc :wincmd q<cr>
+ noremap ,wc :wincmd q<cr>
 
 " toggle cursor line
 nnoremap ,i :set cursorline!<cr>
@@ -165,6 +165,10 @@ nnoremap <silent> $ g$
 " search for word under the cursor
 nnoremap ,/ "fyiw :/<c-r>f<cr>
 
+" exchange line with below/above
+nnoremap <silent> [e ddp
+nnoremap <silent> ]e ddkkp
+
 " inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
 " Use one of the following to define the camel characters.
@@ -181,22 +185,22 @@ nnoremap <silent><C-W> :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']
 " Navigate
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " dc-debug console
-map ,dc :xcmenucmd Activate Console<CR>
-map ,dv :xccmd toggleDebuggerVisibility<CR>
+noremap ,dc :xcmenucmd Activate Console<CR>
+noremap ,dv :xccmd toggleDebuggerVisibility<CR>
 
 " Move back and forward through the history
-map <C-k> :xccmd goForwardInHistoryByCommand<CR>
-map <C-j> :xccmd goBackInHistoryByCommand<CR>
+noremap <C-k> :xccmd goForwardInHistoryByCommand<CR>
+noremap <C-j> :xccmd goBackInHistoryByCommand<CR>
 
 " switch between .h/.m
 " You can use vim cmd |gd| and |ctrl+i/o| to navigate between files.
-map ,n :xccmd jumpToNextCounterpart<CR>
+noremap ,n :xccmd jumpToNextCounterpart<CR>
 
 " Open in alternat editor
-map ,x :xccmd openInAdjacentEditorWithAlternate<CR>
+noremap ,x :xccmd openInAdjacentEditorWithAlternate<CR>
 
 " reveal file or symbol
-map ,pr :xccmd revealInProjectNavigator<CR>
+noremap ,pr :xccmd revealInProjectNavigator<CR>
 "map ,sr :xccmd revealInSymbolNavigator<CR>
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -211,50 +215,50 @@ map ,pr :xccmd revealInProjectNavigator<CR>
 nnoremap <space><space>:xccmd fold<CR>
 nnoremap zz :xccmd unfold<CR>
 nnoremap <C-z> :xccmd unfoldAll<CR>
-map ,fa :xccmd foldAllMethods<CR>
-map ,ua :xccmd unfoldAllMethods<CR>
-map ,fc :xccmd foldAllComments<CR>
-map ,uc :xccmd unfoldAllComments<CR>
+noremap ,fa :xccmd foldAllMethods<CR>
+noremap ,ua :xccmd unfoldAllMethods<CR>
+noremap ,fc :xccmd foldAllComments<CR>
+noremap ,uc :xccmd unfoldAllComments<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 "quick save and quit
-map ,w :w<CR>
+" noremap ,w :w<CR>
 
 set ignorecase
 
 " search the string cursor points to. Very Usefull.
-map ,s viw:xccmd findSelectedTextInWorkspace<CR>
-map ,f viw:xccmd useSelectionForFind<CR>
+noremap ,s viw:xccmd findSelectedTextInWorkspace<CR>
+noremap ,f viw:xccmd useSelectionForFind<CR>
 
 " search document for text cursor points to.
-map ,hh :xccmd searchDocumentationForSelectedText<CR>
+noremap ,hh :xccmd searchDocumentationForSelectedText<CR>
 
 " Filter file (view menus achieve the goal too)
-map ,fn :xcmenucmd Filter in Navigator<CR>
-map ,fl :xcmenucmd Filter in Library<CR>
+noremap ,fn :xcmenucmd Filter in Navigator<CR>
+noremap ,fl :xcmenucmd Filter in Library<CR>
 
 " Close Window
 " map ,cw  :xccmd performClose<CR>
 " close current file
-map ,q  :xccmd closeDocument<CR>
+noremap ,q  :xccmd closeDocument<CR>
 " show in Finder
-map ,in  :xccmd showInFinder<CR>
+noremap ,in  :xccmd showInFinder<CR>
 " cmd+L, go to line
-map ,l  :xccmd openQuicklyScoped<CR>
+noremap ,l  :xccmd openQuicklyScoped<CR>
 
 " insert a space
-nmap ,<space> i <ESC>i
+nnoremap ,<space> i <ESC>i
 
 " insert a line
-nmap ,<Enter> o<Esc>
+nnoremap ,<Enter> o<Esc>
 " quick command mode
-" nmap ; :
+" nnoremap ; :
 " quick replace word
-nmap ,y "zyiw
-nmap ,v viw"zp
-nmap ,c "zciw
-" nmap vp viwpyiw
+nnoremap ,y yiw
+nnoremap ,v viwp
+nnoremap ,c "zciw
+" nnoremap vp viwpyiw
 " nmap 0 ^
 
 " save when esc
@@ -270,6 +274,7 @@ nnoremap ;; mzA;<ESC>`z
 
 " quick jump to end of line
 nnoremap .. <ESC>A
+inoremap .. <ESC>A
 
 " delete the next char
 nnoremap <c-x> lxh

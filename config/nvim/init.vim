@@ -49,6 +49,12 @@ let g:onedark_termcolors=16
 let g:onedark_terminal_italics=1
 
 syntax on
+:map <F7> :if exists("g:syntax_on") <Bar>
+\   syntax off <Bar>
+\ else <Bar>
+\   syntax enable <Bar>
+\ endif <CR>
+
 " set t_Co=256                " Explicitly tell vim that the terminal supports 256 colors"
 colorscheme solarized8_dark_high        " Set the colorscheme
 " Set background transparent
@@ -288,9 +294,10 @@ augroup END
 """""""""""""""""""""""""""""""""""""
 
 " Toggle NERDTree
+nnoremap <silent> <F2> :NERDTreeToggle<cr>
 nnoremap <silent> <leader>k :NERDTreeFocus<cr>
 " expand to the path of the file in the current buffer
-nnoremap <silent> <leader>y :NERDTreeFind<cr>
+nnoremap <silent> <leader>pr :NERDTreeFind<cr>
 
 let NERDTreeShowHidden=1
 let NERDTreeDirArrowExpandable = '▷'
@@ -300,8 +307,8 @@ let NERDTreeDirArrowCollapsible = '▼'
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTreeToggle' argv()[0] | wincmd p | ene | endif
 " From a file
-autocmd vimenter * NERDTreeToggle
-autocmd vimenter * wincmd l
+" autocmd vimenter * NERDTreeToggle
+" autocmd vimenter * wincmd l
 " Without a dot
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
 
@@ -443,3 +450,9 @@ nnoremap <silent>W :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=
 
 "type nlog followed by space to start new log
 iab <expr> nlog strftime("---\n\n%H:%M:%S")
+
+:set textwidth=72
+" Writing a long paragraph to test out the text wrapping in vim. Does
+" thes work? I think so.. Nice!! Turned off format option with fo-=t.
+" Will it work.. yes, seems to work..
+
