@@ -23,6 +23,7 @@ setopt COMPLETE_ALIASES
 
 # make terminal command navigation sane again
 bindkey "^U" backward-kill-line
+bindkey -v
 
 fpath=($ZSH/functions $fpath)
 autoload -U $ZSH/functions/*(:t)

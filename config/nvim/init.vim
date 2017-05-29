@@ -23,9 +23,9 @@ let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 if (has('nvim'))
-	" show results of substition as they're happening
-	" but don't open a split
-	set inccommand=nosplit
+  " show results of substition as they're happening
+  " but don't open a split
+  set inccommand=nosplit
 endif
 
 " }}}
@@ -36,13 +36,13 @@ endif
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 if &term =~ '256color'
-    " disable background color erase
-    set t_ut=
+  " disable background color erase
+  set t_ut=
 endif
 
 " enable 24 bit color support if supported
 if (has('mac') && empty($TMUX) && has("termguicolors"))
-    set termguicolors
+  set termguicolors
 endif
 
 let g:onedark_termcolors=16
@@ -50,10 +50,10 @@ let g:onedark_terminal_italics=1
 
 syntax on
 :map <F7> :if exists("g:syntax_on") <Bar>
-\   syntax off <Bar>
-\ else <Bar>
-\   syntax enable <Bar>
-\ endif <CR>
+      \   syntax off <Bar>
+      \ else <Bar>
+      \   syntax enable <Bar>
+      \ endif <CR>
 
 " set t_Co=256                " Explicitly tell vim that the terminal supports 256 colors"
 colorscheme solarized8_dark_high        " Set the colorscheme
@@ -142,8 +142,8 @@ set t_vb=
 set tm=500
 
 if has('mouse')
-	set mouse=a
-	" set ttymouse=xterm2
+  set mouse=a
+  " set ttymouse=xterm2
 endif
 
 " }}}
@@ -263,27 +263,27 @@ nnoremap d "_d
 " Section AutoGroups {{{
 " file type specific settings
 augroup configgroup
-    autocmd!
+  autocmd!
 
-    " automatically resize panes on resize
-    autocmd VimResized * exe 'normal! \<c-w>='
-    autocmd BufWritePost .vimrc,.vimrc.local,init.vim source %
-    autocmd BufWritePost .vimrc.local source %
-    " save all files on focus lost, ignoring warnings about untitled buffers
-    autocmd FocusLost * silent! wa
+  " automatically resize panes on resize
+  autocmd VimResized * exe 'normal! \<c-w>='
+  autocmd BufWritePost .vimrc,.vimrc.local,init.vim source %
+  autocmd BufWritePost .vimrc.local source %
+  " save all files on focus lost, ignoring warnings about untitled buffers
+  autocmd FocusLost * silent! wa
 
-    " make quickfix windows take all the lower section of the screen
-    " when there are multiple windows open
-    autocmd FileType qf wincmd J
+  " make quickfix windows take all the lower section of the screen
+  " when there are multiple windows open
+  autocmd FileType qf wincmd J
 
-    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-    let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript', 'stylus', 'html']
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+  let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript', 'stylus', 'html']
 
-    " autocmd! BufEnter * call functions#ApplyLocalSettings(expand('<afile>:p:h'))
+  " autocmd! BufEnter * call functions#ApplyLocalSettings(expand('<afile>:p:h'))
 
-    autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
+  autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
 
-    autocmd! BufWritePost * Neomake
+  autocmd! BufWritePost * Neomake
 augroup END
 
 " }}}
@@ -297,7 +297,7 @@ augroup END
 nnoremap <silent> <F2> :NERDTreeToggle<cr>
 nnoremap <silent> <leader>k :NERDTreeFocus<cr>
 " expand to the path of the file in the current buffer
-nnoremap <silent> <leader>pr :NERDTreeFind<cr>
+nnoremap <silent> <leader>r :NERDTreeFind<cr>
 
 let NERDTreeShowHidden=1
 let NERDTreeDirArrowExpandable = '▷'
@@ -314,8 +314,8 @@ let NERDTreeDirArrowCollapsible = '▼'
 
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
 call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
@@ -337,14 +337,14 @@ call NERDTreeHighlightFile('py', 'Magenta', 'none', '#ff00ff', '#151515')
 let g:fzf_layout = { 'down': '~25%' }
 
 if isdirectory(".git")
-    " if in a git project, use :GFiles
-    nnoremap <silent> <leader>t :GFiles<cr>
+  " if in a git project, use :GFiles
+  nnoremap <silent> <leader>t :GFiles<cr>
 else
-    " otherwise, use :FZF
-    nnoremap <silent> <leader>t :FZF<cr>
+  " otherwise, use :FZF
+  nnoremap <silent> <leader>t :FZF<cr>
 endif
 
-nnoremap <silent> <leader>r :Buffers<cr>
+nnoremap <silent> <leader>T :Buffers<cr>
 nnoremap <silent> <leader>e :FZF<cr>
 nnoremap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
@@ -357,19 +357,19 @@ inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
 inoremap <c-x><c-l> <plug>(fzf-complete-line)
 
 nnoremap <silent> <Leader>C :call fzf#run({
-\   'source':
-\     map(split(globpath(&rtp, "colors/*.vim"), "\n"),
-\         "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')"),
-\   'sink':    'colo',
-\   'options': '+m',
-\   'left':    30
-\ })<CR>
+      \   'source':
+      \     map(split(globpath(&rtp, "colors/*.vim"), "\n"),
+      \         "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')"),
+      \   'sink':    'colo',
+      \   'options': '+m',
+      \   'left':    30
+      \ })<CR>
 
 command! FZFMru call fzf#run({
-\  'source':  v:oldfiles,
-\  'sink':    'e',
-\  'options': '-m -x +s',
-\  'down':    '40%'})
+      \  'source':  v:oldfiles,
+      \  'sink':    'e',
+      \  'options': '-m -x +s',
+      \  'down':    '40%'})
 
 
 " Fugitive Shortcuts
@@ -384,19 +384,19 @@ nnoremap <leader>mq :MarkedQuit<cr>
 nnoremap <leader>* *<c-o>:%s///gn<cr>
 
 let g:neomake_javascript_jshint_maker = {
-    \ 'args': ['--verbose'],
-    \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-\ }
+      \ 'args': ['--verbose'],
+      \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
+      \ }
 
 let g:neomake_typescript_tsc_maker = {
-    \ 'args': ['-m', 'commonjs', '--noEmit' ],
-    \ 'append_file': 0,
-    \ 'errorformat':
-        \ '%E%f %#(%l\,%c): error %m,' .
-        \ '%E%f %#(%l\,%c): %m,' .
-        \ '%Eerror %m,' .
-        \ '%C%\s%\+%m'
-\ }
+      \ 'args': ['-m', 'commonjs', '--noEmit' ],
+      \ 'append_file': 0,
+      \ 'errorformat':
+      \ '%E%f %#(%l\,%c): error %m,' .
+      \ '%E%f %#(%l\,%c): %m,' .
+      \ '%Eerror %m,' .
+      \ '%C%\s%\+%m'
+      \ }
 
 " airline options
 let g:airline_powerline_fonts=1
@@ -415,13 +415,13 @@ let g:SuperTabCrMapping = 0
 
 
 au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
+      \ set tabstop=4
+      \ set softtabstop=4
+      \ set shiftwidth=4
+      \ set textwidth=79
+      \ set expandtab
+      \ set autoindent
+      \ set fileformat=unix
 
 " }}}
 
@@ -456,3 +456,4 @@ iab <expr> nlog strftime("---\n\n%H:%M:%S")
 " thes work? I think so.. Nice!! Turned off format option with fo-=t.
 " Will it work.. yes, seems to work..
 
+nnoremap <F3> <C-w>=

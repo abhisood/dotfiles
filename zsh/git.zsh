@@ -14,6 +14,7 @@ alias grm='git rm'
 alias grn='git-rename'
 alias glog="git l"
 alias gps="git pull --rebase && git su --init --recursive"
+alias gpsc="git co master && gps"
 
 # alias git-amend='git commit --amend -C HEAD'
 alias git-undo='git reset --soft HEAD~1'
