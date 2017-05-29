@@ -163,3 +163,21 @@ prompt_agnoster_setup() {
 }
 
 prompt_agnoster_setup "$@"
+
+
+## RPROMPT for Vim mode indication
+precmd() {
+  RPROMPT=""
+}
+zle-keymap-select() {
+  VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+  RPROMPT=""
+  [[ $KEYMAP = vicmd ]] && RPROMPT=$VIM_PROMPT
+  () { return $__prompt_status }
+  zle reset-prompt
+}
+zle-line-init() {
+  typeset -g __prompt_status="$?"
+}
+zle -N zle-keymap-select
+zle -N zle-line-init
