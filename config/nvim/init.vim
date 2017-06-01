@@ -457,3 +457,9 @@ iab <expr> nlog strftime("---\n\n%H:%M:%S")
 " Will it work.. yes, seems to work..
 
 nnoremap <F3> <C-w>=
+
+
+" Easier buffer switching
+set wildchar=<Tab> wildmenu wildmode=full
+set wildcharm=<C-Z>
+nnoremap <F10> :b <C-Z>
