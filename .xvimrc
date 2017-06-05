@@ -1,8 +1,3 @@
-"
-" A configuration file for https://github.com/JugglerShu/XVim
-"
-"
-
 " Comments
 nnoremap gcc :xcmenucmd Comment Selection<CR>
 vnoremap gc  :xcmenucmd Comment Selection<CR>
