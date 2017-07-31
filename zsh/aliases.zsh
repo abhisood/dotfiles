@@ -83,3 +83,4 @@ alias canary="/Applications/Google\\ Chrome\\ Canary.app/Contents/MacOS/Google\\
 
 # Script for life logging
 alias today='zsh $ZSH/Scripts/open_logs_today.sh'
+alias tasks='nvim "/Users/soabhish/Dropbox\ \(Personal\)/Terminal/quicktasks"'

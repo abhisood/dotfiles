@@ -50,7 +50,7 @@ Plug 'vim-scripts/matchit.zip' " extended % matching
 Plug 'tpope/vim-sleuth' " detect indent style (tabs vs. spaces)
 Plug 'sickill/vim-pasta' " context-aware pasting
 " Plug 'Valloric/YouCompleteMe'  " Autocomplete for Python
-Plug 'elentok/plaintasks.vim' " Todo task management
+Plug 'aaronbieber/vim-quicktask' " Todo task management
 
 " html / templates
 Plug 'mattn/emmet-vim', { 'for': 'html' } " emmet support for vim - easily create markdup wth CSS-like syntax

@@ -155,7 +155,7 @@
     editor = nvim
     whitespace = cr-at-eol
 [rerere]
-    enabled = true
+	enabled = 1
 [gitsh]
     defaultCommand = s
 [grep]
@@ -176,3 +176,5 @@
 [mergetool]
     path = nvim
     keepBackup = false
+[merge]
+	conflictstyle = diff3

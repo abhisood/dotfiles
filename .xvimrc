@@ -17,7 +17,7 @@ set hlsearch
 set incsearch
 
 " Setup the number line
-set relativenumber
+set number
 set so=7
 " Relative Line Numbers in Normal Mode
 autocmd InsertEnter * :set number

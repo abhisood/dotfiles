@@ -207,6 +207,7 @@ nnoremap <leader>. <c-^>
 " enable . command in visual mode
 vnoremap . :normal .<cr>
 
+" Window movement
 noremap <silent> <C-h> :call functions#WinMove('h')<cr>
 noremap <silent> <C-j> :call functions#WinMove('j')<cr>
 noremap <silent> <C-k> :call functions#WinMove('k')<cr>
