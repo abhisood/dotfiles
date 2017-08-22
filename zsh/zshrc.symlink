@@ -6,7 +6,7 @@ command_exists() {
     type "$1" > /dev/null 2>&1
 }
 
-
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
