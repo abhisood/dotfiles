@@ -101,7 +101,7 @@ inoremap kj <esc>
 inoremap ;j ;<esc>
 
 " shortcut to save
-nnoremap  ,, mz | gg | vG | :xccmd indentSelection<CR> | `z | :w<CR>
+nnoremap  ,, mz | gg | VG | :xccmd indentSelection<CR> | `z | :w<CR>
 nnoremap ,i :xccmd indentSelection<CR>
 vnoremap ,i :xccmd indentSelection<CR>
 
@@ -271,7 +271,7 @@ nnoremap ,<Enter> o<Esc>
 " quick replace word
 nnoremap ,y yiw
 nnoremap ,v viwp
-nnoremap ,p viwp
+nnoremap ,p ciw | :xccmd paste<CR>
 nnoremap ,c "zciw
 nnoremap ,/ :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 " nnoremap vp viwpyiw
