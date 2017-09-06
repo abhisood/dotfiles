@@ -101,7 +101,7 @@ inoremap kj <esc>
 inoremap ;j ;<esc>
 
 " shortcut to save
-nnoremap  ,, mz | gg | VG | :xccmd indentSelection<CR> | `z | :w<CR>
+nnoremap  ,, mz | gg | VG | :xccmd indentSelection<CR> | <esc>/%s/[ \t]+$//g<CR> | `z | :w<CR> | /[ \t]+$<cr>
 nnoremap ,i :xccmd indentSelection<CR>
 vnoremap ,i :xccmd indentSelection<CR>
 
@@ -178,6 +178,8 @@ nnoremap <silent> $ g$
 
 " search for word under the cursor
 nnoremap ,/ "fyiw :/<c-r>f<cr>
+" search for unwanted whitespace
+nnoremap <space><space> /%s/[ \t]+$//gc<cr>
 
 " exchange line with below/above
 nnoremap <silent> [e ddp
@@ -226,7 +228,7 @@ noremap ,r :xccmd revealInProjectNavigator<CR>
     map ,ea :xccmd toggleTokenizedEditing<CR>
 
 " Fold
-nnoremap <space><space>:xccmd fold<CR>
+" nnoremap <space><space>:xccmd fold<CR>
 nnoremap zz :xccmd unfold<CR>
 nnoremap <C-z> :xccmd unfoldAll<CR>
 noremap ,fa :xccmd foldAllMethods<CR>

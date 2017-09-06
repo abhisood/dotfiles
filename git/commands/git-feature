@@ -1,9 +1,17 @@
 #!/bin/sh
 
-branch=$1
-test -z $branch && echo "branch required." 1>&2 && exit 1
+param1=$1
+param2=$2
 
-upstream=$2
-test -z $upstream && upstream=`echo origin/master`
+test -z $param1 && echo "branch required." 1>&2 && exit 1
+
+if test -z "$param2"
+then
+    upstream=`echo origin/master`
+    branch=$param1
+else
+    upstream=$param1
+    branch=$param2
+fi
 
 git checkout -b $branch -t $upstream
