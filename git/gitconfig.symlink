@@ -186,3 +186,6 @@
 	trustExitCode = true
 [commit]
 	template = /Users/soabhish/.stCommitMsg
+[hub]
+	host = git-aws.internal.justin.tv
+	protocol = https
