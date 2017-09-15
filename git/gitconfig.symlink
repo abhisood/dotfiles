@@ -1,7 +1,7 @@
 # gitconfig
 [user]
-	name = Abhishek Sood
-	email = soabhish@twitch.tv
+    name = Abhishek Sood
+    email = soabhish@twitch.tv
 [github]
     user = soabhish
 [init]
@@ -150,7 +150,7 @@
     # do not warn about missing whitespace at EOF
     whitespace = nowarn
 [core]
-	excludesfile = /Users/soabhish/.gitignore_global
+    excludesfile = /Users/soabhish/.gitignore_global
     pager = less -FXR -x2
     editor = nvim
     whitespace = cr-at-eol
