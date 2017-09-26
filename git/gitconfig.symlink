@@ -57,6 +57,7 @@
 
     # current branch
     cbr = rev-parse --abbrev-ref HEAD
+    preq = pull-request -eoF ~/my-repo/PULL_REQUEST_TEMPLATE.md
 
     # submodule shortcuts
     si = submodule init
@@ -154,6 +155,7 @@
     pager = less -FXR -x2
     editor = nvim
     whitespace = cr-at-eol
+	commentChar = %
 [rerere]
 	enabled = 1
 [gitsh]
