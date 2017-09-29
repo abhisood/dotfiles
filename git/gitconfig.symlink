@@ -57,7 +57,7 @@
 
     # current branch
     cbr = rev-parse --abbrev-ref HEAD
-    preq = pull-request -eoF ~/my-repo/PULL_REQUEST_TEMPLATE.md
+    preq = pull-request -eoF "/Users/soabhish/my-repo/PULL_REQUEST_TEMPLATE.md"
 
     # submodule shortcuts
     si = submodule init
