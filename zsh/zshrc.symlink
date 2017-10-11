@@ -6,12 +6,16 @@ command_exists() {
     type "$1" > /dev/null 2>&1
 }
 
+# We want to load pyenv every time we open a new shell
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
 
 [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
+
 
 # define the code directory
 # This is where my code exists and where I want the `c` autocomplete to work from exclusively

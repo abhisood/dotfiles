@@ -19,8 +19,8 @@ set textwidth=80
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
-let g:python_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:loaded_python_provider = 1
+let g:python3_host_prog = '/Users/soabhish/.pyenv/shims/python'
 
 if (has('nvim'))
   " show results of substition as they're happening
@@ -192,7 +192,6 @@ nnoremap <leader>md :%!markdown --html4tags <cr>
 nnoremap <leader><space> :%s/\s\+$<cr>
 nnoremap <leader><space><space> :%s/\n\{2,}/\r\r/g<cr>
 
-
 nnoremap <leader>l :set list!<cr>
 
 " Textmate style indentation
@@ -213,7 +212,7 @@ noremap <silent> <C-j> :call functions#WinMove('j')<cr>
 noremap <silent> <C-k> :call functions#WinMove('k')<cr>
 noremap <silent> <C-l> :call functions#WinMove('l')<cr>
 
-" fast quiting 
+" fast quiting
 nnoremap <leader>q :q<cr>
 nnoremap <silent> <C-S-q> :q<cr>
 
@@ -254,10 +253,48 @@ nnoremap \s :set ts=4 sts=4 sw=4 et<cr>
 
 nnoremap <silent> <leader>u :call functions#HtmlUnEscape()<cr>
 
-" Make d delete to blackhole register instead of overwriting the yank register
-vnoremap d "_d
-nnoremap d "_d
+" Make copy cut delete better
+nnoremap Y y$
 
+nnoremap d "_d
+nnoremap D "_D
+nnoremap X D
+nnoremap xx dd
+nnoremap c "_c
+nnoremap C "_C
+
+vnoremap d "_d
+vnoremap D "_D
+vnoremap X D
+vnoremap c "_c
+vnoremap C "_C
+
+" remap esc
+inoremap jk <esc>
+inoremap jj <esc>
+inoremap kk <esc>
+inoremap kj <esc>
+inoremap ;j ;<esc>
+
+vnoremap s :sort ui<CR>
+
+" Center after find
+nnoremap n nzz
+nnoremap N Nzz
+
+" Change the background color for searches
+highlight Search guibg=#A55555
+
+" Better move controls
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+
+vnoremap j gj
+vnoremap k gk
+vnoremap gj j
+vnoremap gk k
 
 " }}}
 
@@ -372,7 +409,6 @@ command! FZFMru call fzf#run({
       \  'options': '-m -x +s',
       \  'down':    '40%'})
 
-
 " Fugitive Shortcuts
 """""""""""""""""""""""""""""""""""""
 nnoremap <silent> <leader>gs :Gstatus<cr>
@@ -414,7 +450,6 @@ let g:vim_json_syntax_conceal = 0
 
 let g:SuperTabCrMapping = 0
 
-
 au BufNewFile,BufRead *.py
       \ set tabstop=4
       \ set softtabstop=4
@@ -426,9 +461,7 @@ au BufNewFile,BufRead *.py
 
 " }}}
 
-
 " vim:foldmethod=marker:foldlevel=0
-
 
 " Use one of the following to define the camel characters.
 " Stop on capital letters.
@@ -446,7 +479,6 @@ nnoremap <silent>W :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=
 " vnoremap <silent><C-Left> :<C-U>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>v`>o
 " vnoremap <silent><C-Right> <Esc>`>:<C-U>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>v`<o
 
-
 " For my life/dev logging purposes
 
 "type nlog followed by space to start new log
@@ -458,7 +490,6 @@ iab <expr> nlog strftime("---\n\n%H:%M:%S")
 " Will it work.. yes, seems to work..
 
 nnoremap <F3> <C-w>=
-
 
 " Easier buffer switching
 set wildchar=<Tab> wildmenu wildmode=full

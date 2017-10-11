@@ -32,6 +32,7 @@ alias du='du -h -c' # calculate disk usage for a folder
 
 # Applications
 alias ios='open -a /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
+alias killSim="ps aux | grep Sim | grep -v grep | awk '{print \$2}' | xargs -t kill -9 2>/dev/null"
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -84,3 +85,8 @@ alias canary="/Applications/Google\\ Chrome\\ Canary.app/Contents/MacOS/Google\\
 # Script for life logging
 alias today='zsh $ZSH/Scripts/open_logs_today.sh'
 alias tasks='nvim "/Users/soabhish/Dropbox\ \(Personal\)/Terminal/quicktasks"'
+
+# emacs
+alias e='emacsclient --no-wait'
+
+
