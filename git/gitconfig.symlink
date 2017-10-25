@@ -9,7 +9,7 @@
 [alias]
     # list all aliases
     la = "!git config -l | grep alias | cut -c 7-"
-    delete-merged-branches = "!f() { git checkout master && git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; git checkout @{-1}; }; f"
+    delete-merged-branches = "!f() { git branch --merged | grep --invert-match '\\*' | xargs -n 1 git branch --delete; }; f"
     diff = diff #--ignore-space-at-eol -b -w --ignore-blank-lines
     cnv = commit --no-verify
     pnv = push --no-verify
@@ -191,3 +191,5 @@
 [hub]
 	host = git-aws.internal.justin.tv
 	protocol = https
+[gui]
+	recentrepo = /Users/soabhish/twitchSource2/twitch-iphone

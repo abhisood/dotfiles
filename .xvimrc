@@ -1,10 +1,6 @@
-" Comments
-nnoremap gcc :xcmenucmd Comment Selection<CR>
-vnoremap gc  :xcmenucmd Comment Selection<CR>
-
-" Emulate CTRL-P
-noremap ,t :xccmd openQuickly<CR>
-
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Specific
+"""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Case-insensitive searching.
 set ignorecase
@@ -25,9 +21,6 @@ autocmd InsertLeave * :set relativenumber
 
 " Use the system pasteboard
 set clipboard=unnamed
-
-" noremap <space>b to toggle a breakpoint at the current line
-nnoremap ,b :xccmd toggleBreakpointAtCurrentLine<CR>
 
 " Better navigation
 nnoremap H ^
@@ -100,16 +93,10 @@ inoremap kk <esc>
 inoremap kj <esc>
 inoremap ;j ;<esc>
 
-" shortcut to save
-nnoremap  ,, mz | gg | VG | :xccmd indentSelection<CR> | <esc>/%s/[ \t]+$//g<CR> | `z | :w<CR> | /[ \t]+$<cr>
-nnoremap ,i :xccmd indentSelection<CR>
-vnoremap ,i :xccmd indentSelection<CR>
-
-" set paste toggle
-" set pastetoggle=,v
-
-" toggle paste mode
-" noremap ,v :set paste!<cr>
+"""""""""""""""""""""""""""""""""
+" Vim Specific (advanced shortcuts)
+" """""""""""""""""""""""""""""""""
+"
 
 " edit ~/.config/nvim/init.vim
 noremap ,ev :e! ~/.config/nvim/init.vim<cr>
@@ -179,7 +166,7 @@ nnoremap <silent> $ g$
 " search for word under the cursor
 nnoremap ,/ "fyiw :/<c-r>f<cr>
 " search for unwanted whitespace
-nnoremap <space><space> /%s/[ \t]+$//gc<cr>
+nnoremap <space><space> :%s/[ \t]+$//g<cr>
 
 " exchange line with below/above
 nnoremap <silent> [e ddp
@@ -197,6 +184,26 @@ let g:camelchar = "A-Z0-9"
 let g:camelchar = "A-Z0-9.,;:{([`'\""
 nnoremap <silent><C-B> :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%^','bW')<CR>
 nnoremap <silent><C-W> :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=\)['.g:camelchar.']\<Bar>['.g:camelchar.']\ze\%([^'.g:camelchar.']\&\>\@!\)\<Bar>\%$','W')<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" Xcode Specific
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Comments
+nnoremap gcc :xcmenucmd Comment Selection<CR>
+vnoremap gc  :xcmenucmd Comment Selection<CR>
+
+" noremap <space>b to toggle a breakpoint at the current line
+nnoremap ,b :xccmd toggleBreakpointAtCurrentLine<CR>
+
+" Emulate CTRL-P
+noremap ,t :xccmd openQuickly<CR>
+
+" shortcut to save
+nnoremap  ,, mz | gg | VG | :xccmd indentSelection<CR> | <esc>/%s/[ \t]+$//g<CR> | `z | :w<CR> | /[ \t]+$<cr>
+nnoremap ,i :xccmd indentSelection<CR>
+vnoremap ,i :xccmd indentSelection<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Navigate
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -211,6 +218,8 @@ noremap <C-j> :xccmd goBackInHistoryByCommand<CR>
 " switch between .h/.m
 " You can use vim cmd |gd| and |ctrl+i/o| to navigate between files.
 noremap ,n :xccmd jumpToNextCounterpart<CR>
+noremap gd :xccmd jumpToDefinition<CR>
+noremap ,gd :xccmd jumpToDefinitionWithAlternate<CR>
 
 " Open in alternat editor
 noremap ,x :xccmd openInAdjacentEditorWithAlternate<CR>
