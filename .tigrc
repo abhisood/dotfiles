@@ -1,0 +1,3 @@
+# Shift - R to start a interactive rebase
+bind main R !git rebase -i %(commit)^
+bind diff R !git rebase -i %(commit)^
