@@ -13,7 +13,7 @@ alias grm='git rm'
 alias grn='git-rename'
 alias gl="git l"
 alias gps="git pull --rebase && git su --init --recursive"
-alias gpsc="git co master && gps"
+alias gpsc="git co master && gps && git br"
 alias gatc='git add Twitch.tv/Code/* && git st'
 alias gch='git checkout HEAD~'
 
