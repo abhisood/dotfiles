@@ -18,6 +18,7 @@ alias gatc='git add Twitch.tv/Code/* && git st'
 alias gch='git checkout HEAD~'
 
 alias st='git st'
+alias br='git branch'
 alias diff='git diff'
 alias rhard='git reset --hard'
 alias throw='git commit -m "throw away"'
