@@ -22,7 +22,7 @@ alias br='git branch'
 alias diff='git diff'
 alias rhard='git reset --hard'
 alias throw='git commit -m "throw away"'
-alias fix='git commit -m "fix requested changes"'
+alias fix='git commit -m "Fix requested changes"'
 
 # alias git-amend='git commit --amend -C HEAD'
 alias gitundo='git reset --soft HEAD~1'
