@@ -145,6 +145,7 @@
     mnemonicprefix = true
     compactionHeuristic = true
     tool = nvim
+	algorithm = patience
 [difftool]
     prompt = false
 [apply]
