@@ -299,9 +299,9 @@ inoremap <c-;> <ESC>A;<ESC>o
 inoremap ;; <ESC>mzA;<ESC>`z
 nnoremap ;; mzA;<ESC>`z
 
-" quick jump to end of line
-nnoremap .. <ESC>A
-inoremap .. <ESC>A
+" " quick jump to end of line
+" nnoremap .. <ESC>A
+" inoremap .. <ESC>A
 
 " delete the next char
 nnoremap <c-x> lxh
