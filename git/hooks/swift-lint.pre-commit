@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo ""
+echo ""
+echo -e "\033[1m Running Swift lint \033[0m"
+lint
+echo ""
+echo ""

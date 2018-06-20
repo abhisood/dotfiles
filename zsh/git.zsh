@@ -13,7 +13,7 @@ alias grm='git rm'
 alias grn='git-rename'
 alias gl="git l"
 alias gps="git pull --rebase && git su --init --recursive"
-alias gpsc="git co master && gps"
+alias gpsc="gbrr && git co master && gps"
 alias gatc='git add Twitch.tv/Code/* && git st'
 alias gch='git checkout HEAD~'
 
@@ -23,6 +23,8 @@ alias diff='git diff'
 alias rhard='git reset --hard'
 alias throw='git commit -m "throw away"'
 alias fix='git commit -m "Fix requested changes"'
+# Revert changes to breakpoints
+alias gbrr='git co HEAD~ -- Twitch.xcworkspace/xcshareddata/xcdebugger/Breakpoints_v2.xcbkptlist'
 
 # alias git-amend='git commit --amend -C HEAD'
 alias gitundo='git reset --soft HEAD~1'
