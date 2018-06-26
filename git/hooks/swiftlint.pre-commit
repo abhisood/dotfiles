@@ -25,5 +25,5 @@ else
     echo "${COLOR_GREEN}✔ No linting error.${COLOR_NONE}"
 fi
 
-exit ${EXIT_CODE}
+exit $((${EXIT_CODE}))
 

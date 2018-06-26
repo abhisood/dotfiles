@@ -156,8 +156,8 @@
     pager = less -FXR -x2
     editor = nvim
     whitespace = cr-at-eol
-	commentChar = %
-	hooksPath = /Users/soabhish/.dotfiles/git/hooks
+    commentChar = %
+    hooksPath = /Users/soabhish/.dotfiles/git/hooks/
 [rerere]
 	enabled = 1
 [gitsh]
