@@ -1,8 +1,29 @@
-#!/bin/bash
+#!/bin/sh
+# Run swift lint before commit
+
+EXIT_CODE=0
+COLOR_RED="\x1B[31m"
+COLOR_YELLOW="\x1B[1;33m"
+COLOR_GREEN="\x1B[32m"
+COLOR_NONE="\x1B[0m"
 
 echo ""
+echo "${COLOR_YELLOW}Running Swift Lint.${COLOR_NONE}"
+
+lintOutput=$( exec ~/twitch-iphone/tools/swiftlint.tcl 2>/dev/null )
+if [ -n "$lintOutput" ]; then
+  EXIT_CODE=1
+fi
+
 echo ""
-echo -e "\033[1m Running Swift lint \033[0m"
-lint
-echo ""
-echo ""
+if [[ ${EXIT_CODE} -ne 0 ]]; then
+    echo "${COLOR_RED}✘ Swift Lint detected problems.${COLOR_NONE}"
+    echo ""
+    echo "${lintOutput}"
+    echo ""
+else
+    echo "${COLOR_GREEN}✔ No linting error.${COLOR_NONE}"
+fi
+
+exit ${EXIT_CODE}
+
