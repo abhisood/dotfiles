@@ -145,7 +145,7 @@
     mnemonicprefix = true
     compactionHeuristic = true
     tool = nvim
-	algorithm = patience
+    algorithm = patience
 [difftool]
     prompt = false
 [apply]
@@ -181,6 +181,11 @@
     keepBackup = false
 [merge]
 	conflictstyle = diff3
+[difftool "vscode"]
+  cmd = code \"$LOCAL\" \"$REMOTE\"
+[mergetool "vscode"]
+  cmd = code \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
