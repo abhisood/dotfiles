@@ -29,6 +29,8 @@ formulas=(
     wget
     z
     zsh
+    rbenv
+    tig
 )
 
 for formula in "${formulas[@]}"; do
@@ -38,3 +40,8 @@ for formula in "${formulas[@]}"; do
         brew install $formula
     fi
 done
+
+if command_exists rbenv; then
+    echo "rbenv init"
+    rbenv init
+fi

@@ -26,7 +26,7 @@ if [ "$(uname)" == "Darwin" ]; then
 
     ln -s ~/.dotfiles/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
     # symlink the code.dev from dotfiles
-    ln -s ~/.dotfiles/nginx/code.dev /usr/local/etc/nginx/sites-enabled/code.dev
+    ln -s ~/.dotfiles/nginx/code.dev /usr/local/etc/nginx/sites-enabled/code.dev 
 fi
 
 echo "creating vim directories"
@@ -43,6 +43,10 @@ fi
 if ! command_exists zplug; then
     echo "installing zplug, a plugin manager for zsh - http://zplug.sh"
     git clone https://github.com/zplug/zplug ~/.zplug
+fi
+
+if command_exists rbenv; then
+    curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | zsh
 fi
 
 echo "Done. Reload your terminal."
