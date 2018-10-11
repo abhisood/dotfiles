@@ -14,7 +14,7 @@ set autoread                " detect when a file is changed
 set encoding=utf-8
 
 set history=1000            " change history to 1000
-set textwidth=80
+" set textwidth=80
 
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
@@ -484,7 +484,7 @@ nnoremap <silent>W :<C-u>call search('\C\<\<Bar>\%(^\<Bar>[^'.g:camelchar.']\@<=
 "type nlog followed by space to start new log
 iab <expr> nlog strftime("---\n\n%H:%M:%S")
 
-:set textwidth=72
+" :set textwidth=72
 " Writing a long paragraph to test out the text wrapping in vim. Does
 " thes work? I think so.. Nice!! Turned off format option with fo-=t.
 " Will it work.. yes, seems to work..

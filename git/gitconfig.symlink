@@ -1,7 +1,7 @@
 # gitconfig
 [user]
     name = Abhishek Sood
-    email = soabhish@twitch.tv
+	email = abhisood@gmail.com
 [github]
     user = soabhish
 [init]
