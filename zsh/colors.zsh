@@ -81,12 +81,11 @@ prompt_context() {
 # Git: branch/detached head, dirty status
 prompt_git() {
   local color ref
-  is_dirty() {
-    test -n "$(git status --porcelain --ignore-submodules)"
-  }
   ref="$vcs_info_msg_0_"
   if [[ -n "$ref" ]]; then
-    if is_dirty; then
+    # check if it's dirty
+    git diff-files --ignore-submodules --quiet --no-ext-diff
+    if [[ $? -eq 1 ]]; then
       color=yellow
       ref="${ref} $PLUSMINUS"
     else
