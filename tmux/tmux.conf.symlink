@@ -21,7 +21,7 @@ set -g visual-activity off
 # Rather than constraining window size to the maximum size of any client
 # connected to the *session*, constrain window size to the maximum size of any
 # client connected to *that window*. Much more reasonable.
-setw -g aggressive-resize on
+setw -g aggressive-resize off
 
 # make delay shorter
 set -sg escape-time 0
@@ -108,3 +108,12 @@ bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-
 ##############################
 
 source ~/.dotfiles/tmux/human.sh
+
+# Tmux plugin manager
+set -g @plugin 'tmux-plugins/tpm'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
+
+# Fixes iterm2 integration. Should go after "run '~/.tmux/plugins/tpm/tpm'"
+setw -g aggressive-resize off
