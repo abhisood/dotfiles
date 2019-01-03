@@ -4,11 +4,13 @@ command_exists() {
     type "$1" > /dev/null 2>&1
 }
 
-# Prompt to switch branches
-if [ "$(uname)" != "Darwin" ]; then
-    echo -e "\n\nRunning on non-OSX system. Do need to switch to 'server' branch for 'dotfiles repo'?"
-    exit 1
-fi
+is_linux() {
+    [ "$(uname)" == "Linux" ]
+}
+
+is_darwin() {
+    [ "$(uname)" == "Darwin" ]
+}
 
 echo "Installing dotfiles."
 
@@ -18,8 +20,13 @@ git submodule update --init --recursive
 source install/link.sh
 
 # only perform macOS-specific install
-if [ "$(uname)" == "Darwin" ]; then
+if is_darwin; then
     echo -e "\n\nRunning on OSX"
+
+    if test ! $(which brew); then
+        echo "Installing homebrew"
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
 
     source install/brew.sh
 
@@ -32,7 +39,19 @@ if [ "$(uname)" == "Darwin" ]; then
 
     ln -s ~/.dotfiles/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
     # symlink the code.dev from dotfiles
-    ln -s ~/.dotfiles/nginx/code.dev /usr/local/etc/nginx/sites-enabled/code.dev 
+    ln -s ~/.dotfiles/nginx/code.dev /usr/local/etc/nginx/sites-enabled/code.dev
+elif is_linux; then
+    echo -e "\n\nRunning on Linux"
+
+    if test ! $(which brew); then
+        echo "Installing linuxbrew"
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    fi
+
+    source install/brew.sh
+else
+    echo -e "\nUnsupported system $(uname)"
+    exit 1
 fi
 
 
