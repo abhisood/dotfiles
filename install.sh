@@ -18,6 +18,7 @@ echo "Initializing submodule(s)"
 git submodule update --init --recursive
 
 source install/link.sh
+tic -x xterm-256color-italic.terminfo
 
 # only perform macOS-specific install
 if is_darwin; then
