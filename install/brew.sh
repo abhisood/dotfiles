@@ -31,6 +31,9 @@ formulas=(
     zsh
     rbenv
     tig
+    bat
+    fd
+    hyperfine
 )
 
 for formula in "${formulas[@]}"; do

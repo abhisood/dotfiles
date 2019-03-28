@@ -23,6 +23,8 @@ alias ll="ls -lFh"
 alias lld="ls -l | grep ^d"
 alias rmf="rm -rf"
 
+alias cat=bat
+
 # Helpers
 alias grep='grep --color=auto'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
