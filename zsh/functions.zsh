@@ -114,6 +114,13 @@ function scpp() {
     echo "Copied to clipboard: http://nicknisi.com/share/$1"
 }
 
+# Measure endpoint perf with curl
+function curlp() {
+    curl -s -w 'Testing Website Response Time for :%{url_effective}\n\nLookup Time:\t\t%{time_namelookup}\nConnect Time:\t\t%{time_connect}\nAppCon Time:\t\t%{time_appconnect}\nRedirect Time:\t\t%{time_redirect}\nPre-transfer Time:\t%{time_pretransfer}\nStart-transfer Time:\t%{time_starttransfer}\n\nTotal Time:\t\t%{time_total}\n' -o /dev/null "$1"
+}
+
+
+
 # syntax highlight the contents of a file or the clipboard and place the result on the clipboard
 function hl() {
     if [ -z "$3" ]; then

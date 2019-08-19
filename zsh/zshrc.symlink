@@ -1,6 +1,14 @@
 export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh
 export DEFAULT_USER=`whoami`
+export KEYTIMEOUT=1
+export PAGER="diff-so-fancy | less --tabs=4 -RFX"
+
+autoload -Uz run-help
+autoload -Uz run-help-git
+autoload -Uz run-help-svn
+autoload -Uz run-help-svk
+HELPDIR=/usr/share/zsh/5.3/help/
 
 command_exists() {
     type "$1" > /dev/null 2>&1
@@ -33,7 +41,7 @@ fi
 
 
 # initialize autocomplete
-fpath=($ZSH/completions $fpath) 
+fpath=($ZSH/completions $fpath)
 autoload -Uz compinit && compinit
 
 for config ($ZSH/**/*completion.sh) source $config

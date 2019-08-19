@@ -195,6 +195,8 @@ nnoremap <leader><space><space> :%s/\n\{2,}/\r\r/g<cr>
 nnoremap <leader>l :set list!<cr>
 
 " Textmate style indentation
+vnoremap > >gv
+vnoremap < <gv
 vnoremap <leader>[ <gv
 vnoremap <leader>] >gv
 nnoremap <leader>[ <<

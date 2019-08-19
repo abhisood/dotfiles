@@ -3,7 +3,7 @@
     name = Abhishek Sood
 	email = abhisood@gmail.com
 [github]
-    user = soabhish
+    user = asood
 [init]
     templatedir = ~/.dotfiles/git/templates
 [alias]
@@ -41,7 +41,7 @@
     day = "!sh -c 'git ll --no-merges --branches=* --date=local --since=\"40 hours\" --author=\"`git config --get user.name`\"'"
 
 
-    me = ll --author=soabhish
+    me = ll --author=asood
     # order files by number of commits, ascending
     # Written by Corey Haines
     # Scriptified by Gary Bernhardt
@@ -57,7 +57,7 @@
 
     # current branch
     cbr = rev-parse --abbrev-ref HEAD
-    preq = pull-request -eoF "/Users/soabhish/my-repo/PULL_REQUEST_TEMPLATE.md"
+    preq = pull-request -eoF "/Users/asood/my-repo/PULL_REQUEST_TEMPLATE.md"
 
     # submodule shortcuts
     si = submodule init
@@ -86,7 +86,7 @@
     unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
 
     # list the authors of the most recent commit of each branch
-    llb = "!git for-each-ref --color --format='%(color:blue)*%(color:reset) %(color:cyan)%(objectname:short)%(color:reset) %(align:width=30)%(color:bold)%(refname:short)%(color:reset)%(end) %(color:blue)%(authorname)%(color:reset) - %(contents:subject) - %(color:green)(%(committerdate:relative))%(color:reset)'"
+    llb = "!git for-each-ref --color --sort='-committerdate' --format='%(color:blue)*%(color:reset) %(color:cyan)%(objectname:short)%(color:reset) %(align:width=30)%(color:bold)%(refname:short)%(color:reset)%(end) %(color:blue)%(authorname)%(color:reset) - %(contents:subject) - %(color:green)(%(committerdate:relative))%(color:reset)'"
 
     # show the most recently touched branches
     recent = "!git for-each-ref --sort='-committerdate' --format='%(color:red)%(refname)%(color:reset)%09%(committerdate)' refs/heads | sed -e 's-refs/heads/--' | less -XFR"
@@ -155,12 +155,12 @@
     # do not warn about missing whitespace at EOF
     whitespace = nowarn
 [core]
-    excludesfile = /Users/soabhish/.gitignore_global
+    excludesfile = /Users/asood/.gitignore_global
     pager = less -FXR -x2
     editor = nvim
     whitespace = cr-at-eol
     commentChar = %
-    hooksPath = /Users/soabhish/.dotfiles/git/hooks/
+    hooksPath = /Users/asood/.dotfiles/git/hooks/
 [rerere]
 	enabled = 1
 [gitsh]
@@ -197,9 +197,9 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [commit]
-	template = /Users/soabhish/.stCommitMsg
+	template = /Users/asood/.stCommitMsg
 [hub]
 	host = git-aws.internal.justin.tv
 	protocol = https
 [gui]
-	recentrepo = /Users/soabhish/twitchSource2/twitch-iphone
+	recentrepo = /Users/asood/twitchSource2/twitch-iphone
