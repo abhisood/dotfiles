@@ -89,8 +89,8 @@
     llb = "!git for-each-ref --color --sort='-committerdate' --format='%(color:blue)*%(color:reset) %(color:cyan)%(objectname:short)%(color:reset) %(align:width=30)%(color:bold)%(refname:short)%(color:reset)%(end) %(color:blue)%(authorname)%(color:reset) - %(contents:subject) - %(color:green)(%(committerdate:relative))%(color:reset)'"
 
     # show the most recently touched branches
-    recent = "!git for-each-ref --sort='-committerdate' --format='%(color:red)%(refname)%(color:reset)%09%(committerdate)' refs/heads | sed -e 's-refs/heads/--' | less -XFR"
-    latest = "!git for-each-ref --sort='-committerdate' --format='%(color:red)%(refname)%(color:reset)%09%(committerdate)' refs/remotes | sed -e 's-refs/remotes/origin/--' | less -XFR"
+    recent = "!git for-each-ref --sort='-committerdate' --format='%(color:red)%(refname)%(color:reset)%09%(committerdate)' refs/heads | sed -e 's-refs/heads/--' | less -iXFR"
+    latest = "!git for-each-ref --sort='-committerdate' --format='%(color:red)%(refname)%(color:reset)%09%(committerdate)' refs/remotes | sed -e 's-refs/remotes/origin/--' | less -iXFR"
 
     # grep commands
 
@@ -116,6 +116,7 @@
     pr = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
     pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 	fix = !git diff --name-only --relative -z --diff-filter=U | xargs -0 ${EDITOR}
+	fixs = !git diff --name-only --relative -z --diff-filter=U | xargs -0 subl
 [color]
     diff = auto
     status = auto
@@ -156,7 +157,7 @@
     whitespace = nowarn
 [core]
     excludesfile = /Users/asood/.gitignore_global
-    pager = less -FXR -x2
+	pager = diff-so-fancy | less --tabs=4 -iRFX
     editor = nvim
     whitespace = cr-at-eol
     commentChar = %
@@ -178,8 +179,8 @@
 [rebase]
 	instructionFormat = "[%an - %ar] %s"
 [pager]
-    diff = "diff-so-fancy | less --tabs=4 -RFX"
-    show = "diff-so-fancy | less --tabs=4 -RFX"
+    diff = "diff-so-fancy | less --tabs=4 -iRFX"
+    show = "diff-so-fancy | less --tabs=4 -iRFX"
 [mergetool]
     path = nvim
     keepBackup = false

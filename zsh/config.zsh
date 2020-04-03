@@ -29,8 +29,11 @@ bindkey '^K' down-history
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
-bindkey ',,' history-incremental-search-backward
+bindkey -M viins ',,' history-incremental-search-backward
 bindkey 'W' forward-word
+bindkey -M viins '^R' history-incremental-pattern-search-backward
+bindkey -M viins '^F' history-incremental-pattern-search-forward
+bindkey -M viins ',,' history-incremental-pattern-search-backward
 
 fpath=($ZSH/functions $fpath)
 autoload -U $ZSH/functions/*(:t)

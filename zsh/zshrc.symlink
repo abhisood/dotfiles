@@ -2,7 +2,8 @@ export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh
 export DEFAULT_USER=`whoami`
 export KEYTIMEOUT=1
-export PAGER="diff-so-fancy | less --tabs=4 -RFX"
+export PAGER="less"
+export LESS="-FXR"
 
 autoload -Uz run-help
 autoload -Uz run-help-git
@@ -93,8 +94,6 @@ fi
 # End Nix
 
 export PATH="$HOME/.fastlane/bin:$PATH"
-export PATH="$HOME/code/arcanist/bin:$PATH"
-export PATH="$HOME/code/arcanist/bin:$PATH"
 
 # export ANT_HOME=/usr/local/opt/ant
 # export MAVEN_HOME=/usr/local/opt/maven
