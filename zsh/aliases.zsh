@@ -17,9 +17,9 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 alias ls="ls ${colorflag}"
-alias l="ls -lah" 
-alias la="ls -AF" 
-alias ll="ls -lFh" 
+alias l="ls -lah"
+alias la="ls -AF"
+alias ll="ls -lFh"
 alias lld="ls -l | grep ^d"
 alias rmf="rm -rf"
 
@@ -31,13 +31,15 @@ alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 alias fgrep='sgrep -v'
 alias df='df -h' # disk free, in Gigabytes, not bytes
 alias du='du -h -c' # calculate disk usage for a folder
-alias ff='open Focus.xcodeproj'
+alias ef='subl /Users/asood/code/ios/XCHammerConfig'
+alias ff='open Pinterest.xcworkspace'
 alias ffm='make xcode_focus && ff'
 alias xc="open -a Xcode"
 
 # Applications
 alias ios='open -a /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
-alias killSim="ps aux | grep Sim | grep -v grep | awk '{print \$2}' | xargs -t kill -9 2>/dev/null"
+alias killSim="sudo killall -9 com.apple.CoreSimulator.CoreSimulatorService"
+alias delSim="sudo killall -9 com.apple.CoreSimulator.CoreSimulatorService; xcrun simctl list devices | grep \"iPhone\|iPad\" | awk '{print \$(NF -1)}' | cut -d \"(\" -f2 | cut -d \")\" -f1 | xargs -I {} xcrun simctl delete \"{}\""
 alias lint="~/twitch-iphone/tools/swiftlint.tcl 2>/dev/null"
 
 # IP addresses

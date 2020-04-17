@@ -10,8 +10,11 @@ if [ -z ${RELOAD} ]; then
     zplug 'zsh-users/zsh-syntax-highlighting', defer:2
     zplug 'zsh-users/zsh-autosuggestions'
     zplug 'akoenig/npm-run.plugin.zsh'
-    zplug "plugins/git",   from:oh-my-zsh
+    zplug 'plugins/git',   from:oh-my-zsh
     zplug 'zsh-users/zsh-completions'
+    zplug 'sei40kr/fast-alias-tips-bin', from:gh-r, as:command, rename-to:def-matcher
+    zplug 'sei40kr/zsh-fast-alias-tips'
+    zplug 'brymck/print-alias'
 
     export NVM_LAZY_LOAD=true
     zplug "lukechilds/zsh-nvm"
