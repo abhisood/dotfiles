@@ -54,6 +54,11 @@ function git-rename() {
     git mv "${2}-" $2
 }
 
+function gpush() {
+    # if there are arguments, send them to git
+    git push origin HEAD:$@
+}
+
 function g() {
     if [[ $# > 0 ]]; then
         # if there are arguments, send them to git
