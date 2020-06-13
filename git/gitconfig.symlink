@@ -21,9 +21,9 @@
     ss  = status
     br = branch -v
     rc = rebase --continue
-    d = diff 
+    d = diff
     dh = diff HEAD^
-    ds = diff --name-status 
+    ds = diff --name-status
     dhs = ds HEAD^
     mt = mergetool
 
@@ -193,7 +193,7 @@
   trustExitCode = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true

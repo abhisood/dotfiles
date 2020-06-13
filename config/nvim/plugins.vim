@@ -51,6 +51,7 @@ Plug 'tpope/vim-sleuth' " detect indent style (tabs vs. spaces)
 Plug 'sickill/vim-pasta' " context-aware pasting
 " Plug 'Valloric/YouCompleteMe'  " Autocomplete for Python
 Plug 'aaronbieber/vim-quicktask' " Todo task management
+Plug 'keith/swift.vim'
 
 " html / templates
 Plug 'mattn/emmet-vim', { 'for': 'html' } " emmet support for vim - easily create markdup wth CSS-like syntax
