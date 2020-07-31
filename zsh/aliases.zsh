@@ -42,6 +42,7 @@ alias killSim="sudo killall -9 com.apple.CoreSimulator.CoreSimulatorService"
 alias delSim="sudo killall -9 com.apple.CoreSimulator.CoreSimulatorService; xcrun simctl list devices | grep \"iPhone\|iPad\" | awk '{print \$(NF -1)}' | cut -d \"(\" -f2 | cut -d \")\" -f1 | xargs -I {} xcrun simctl delete \"{}\""
 alias lint="~/twitch-iphone/tools/swiftlint.tcl 2>/dev/null"
 alias recSim='xcrun simctl io booted recordVideo --force --mask=black --codec=h264'
+alias ddd='rmf /Users/asood/Library/Developer/Xcode/DerivedData'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
