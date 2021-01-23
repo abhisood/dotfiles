@@ -118,3 +118,4 @@ export NVM_DIR="$HOME/.nvm"
  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 . /Users/asood/.nix-profile/etc/profile.d/nix.sh
+export PATH="/usr/local/opt/thrift@0.9/bin:$PATH"
