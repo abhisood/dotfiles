@@ -31,7 +31,7 @@ alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 alias fgrep='sgrep -v'
 alias df='df -h' # disk free, in Gigabytes, not bytes
 alias du='du -h -c' # calculate disk usage for a folder
-alias ef='subl /Users/asood/code/ios/XCHammerConfig'
+alias ef='subl ./XCHammerConfig'
 alias ff='open Pinterest.xcworkspace'
 alias ffm='make xcode_focus && ff'
 alias xc="open -a Xcode"

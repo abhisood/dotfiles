@@ -1,7 +1,6 @@
 # git aliases
 alias ga='git add'
 alias gb='git branch'
-#alias gl='git pull'
 alias gp='git push'
 alias gd='git diff'
 alias gdc='git diff --cached'
