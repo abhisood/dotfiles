@@ -4,6 +4,12 @@ command_exists() {
     type "$1" > /dev/null 2>&1
 }
 
+# Prompt to switch branches
+if [ "$(uname)" != "Darwin" ]; then
+    echo -e "\n\nRunning on non-OSX system. Do need to switch to 'server' branch for 'dotfiles repo'?"
+    exit 1
+fi
+
 echo "Installing dotfiles."
 
 echo "Initializing submodule(s)"
@@ -28,6 +34,7 @@ if [ "$(uname)" == "Darwin" ]; then
     # symlink the code.dev from dotfiles
     ln -s ~/.dotfiles/nginx/code.dev /usr/local/etc/nginx/sites-enabled/code.dev 
 fi
+
 
 echo "creating vim directories"
 mkdir -p ~/.vim-tmp
