@@ -1,4 +1,4 @@
-# reload zsh config
+# reload zsh config 
 alias reload!='RELOAD=1 source ~/.zshrc'
 
 # Detect which `ls` flavor is in use
@@ -32,8 +32,8 @@ alias fgrep='sgrep -v'
 alias df='df -h' # disk free, in Gigabytes, not bytes
 alias du='du -h -c' # calculate disk usage for a folder
 alias ef='subl ./XCHammerConfig'
-alias ff='open Pinterest.xcworkspace'
-alias ffm='make xcode_focus && ff'
+alias ff='open PinterestXcodegen..xcodeproj'
+alias ffm='make xcode'
 alias xc="open -a Xcode"
 
 # Applications
@@ -99,4 +99,6 @@ alias tasks='nvim "/Users/soabhish/Dropbox\ \(Personal\)/Terminal/quicktasks"'
 # emacs
 alias e='emacsclient --no-wait'
 
+# login
+alias pi_login='knox login asood && gironde sign -ca github'
 

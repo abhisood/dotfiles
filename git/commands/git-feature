@@ -7,7 +7,7 @@ test -z $param1 && echo "branch required." 1>&2 && exit 1
 
 if test -z "$param2"
 then
-    upstream=`echo origin/master`
+    upstream=`echo master`
     branch=$param1
 else
     upstream=$param1

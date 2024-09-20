@@ -201,6 +201,14 @@
 	template = /Users/asood/.stCommitMsg
 [hub]
 	host = git-aws.internal.justin.tv
-	protocol = https
+	protocol = ssh
+	host = github.com/pinternal
 [gui]
 	recentrepo = /Users/asood/twitchSource2/twitch-iphone
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[submodule]
+	recurse = true

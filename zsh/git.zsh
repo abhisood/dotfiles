@@ -45,6 +45,9 @@ function gitc() {
     git co $1 && gps
 }
 
+function git-list-all-commits() {
+    git ll $1..$2
+}
 
 # a simple git rename file function
 # git does not track case-sensitive changes to a filename.

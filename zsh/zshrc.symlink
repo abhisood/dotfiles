@@ -4,6 +4,7 @@ export DEFAULT_USER=`whoami`
 export KEYTIMEOUT=1
 export PAGER="less"
 export LESS="-FXR"
+export OVERRIDE_OFFICIAL_XCODE=true
 
 autoload -Uz run-help
 autoload -Uz run-help-git
@@ -38,7 +39,6 @@ for config ($ZSH/**/*.zsh) source $config
 if [[ -a ~/.localrc ]]; then
     source ~/.localrc
 fi
-
 
 
 # initialize autocomplete
@@ -98,6 +98,7 @@ export PATH="$HOME/.fastlane/bin:$PATH"
 # export ANT_HOME=/usr/local/opt/ant
 # export MAVEN_HOME=/usr/local/opt/maven
 # export GRADLE_HOME=/usr/local/opt/gradle
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 export ANDROID_HOME=/Users/asood/Library/Android/sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
 # export ANDROID_NDK_HOME=/usr/local/share/android-ndk
@@ -113,10 +114,14 @@ export GOROOT=$HOME/go
 export GOPATH=$HOME/code/magnus
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
-export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
- [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export TMPDIR=~/tmp
+mkdir -p $TMPDIR
 
-. /Users/asood/.nix-profile/etc/profile.d/nix.sh
-export PATH="/usr/local/opt/thrift@0.9/bin:$PATH"
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+export PATH=/usr/local/bin:$PATH
+eval "$(~/.local/bin/mise activate zsh)"

@@ -497,3 +497,5 @@ nnoremap <F3> <C-w>=
 set wildchar=<Tab> wildmenu wildmode=full
 set wildcharm=<C-Z>
 nnoremap <F10> :b <C-Z>
+
+let g:snipMate = { 'snippet_version' : 1 }
